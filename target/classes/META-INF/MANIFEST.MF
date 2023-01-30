@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: user
+Build-Jdk: 17.0.3
+Implementation-Title: Interview
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.cathayunitedbank.maven
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/Interview
+Created-By: Maven Integration for Eclipse
+
