@@ -1,5 +1,6 @@
 package com.cathayunited.interview.utils;
 
+import com.google.gson.JsonParser;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -50,8 +51,12 @@ public class Helper {
 	
 	public static String callApi(HttpRequestBase methods) throws Exception {
 		CloseableHttpResponse response = httpClient.execute(methods);
+
 		String raw = EntityUtils.toString(response.getEntity());
-		return raw;
+		JsonParser parser = new JsonParser() ;
+
+
+		return parser.parse(raw).toString();
 	}
 	
 	private static CloseableHttpClient createClient() {

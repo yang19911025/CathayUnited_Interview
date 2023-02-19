@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.wink.json4j.JSONArray;
@@ -30,19 +32,20 @@ public class CurrencyApiServiceImpl implements CurrencyApiService {
 	@Override
 	public ResponseEntity<List<Currency>> showAllCurrencyInfo() {
 		try {
-			List<Currency> tutorials = new ArrayList<Currency>();
+			StringBuilder sb = new StringBuilder();
+			for(Currency c : currencyRepository.findAll()){
+				sb.append("id:"+c.getId()+",code:"+c.getCode()+",description:"+c.getDescription());
+				sb.append("\n");
+			}
 
-			for (Currency currency : currencyRepository.findAll()) {
-				tutorials.add(currency);
-			}
-			if (tutorials.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<>(tutorials, HttpStatus.OK);
+
+			return new ResponseEntity<>(currencyRepository.findAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+
 
 	@Override
 	public ResponseEntity<Currency> createCurrency(Currency currency) {

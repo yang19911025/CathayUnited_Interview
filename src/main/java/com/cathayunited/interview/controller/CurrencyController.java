@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.wink.json4j.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,7 @@ public class CurrencyController {
 		
 		return currencyApiService.showAllCurrencyInfo();
 	}
+
 	@PostMapping("/newCurrency")
 	public ResponseEntity<Currency> createCurrency(@RequestBody Currency currency){
 		return currencyApiService.createCurrency(currency);
