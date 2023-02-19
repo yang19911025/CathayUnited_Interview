@@ -32,13 +32,6 @@ public class CurrencyApiServiceImpl implements CurrencyApiService {
 	@Override
 	public ResponseEntity<List<Currency>> showAllCurrencyInfo() {
 		try {
-			StringBuilder sb = new StringBuilder();
-			for(Currency c : currencyRepository.findAll()){
-				sb.append("id:"+c.getId()+",code:"+c.getCode()+",description:"+c.getDescription());
-				sb.append("\n");
-			}
-
-
 			return new ResponseEntity<>(currencyRepository.findAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
